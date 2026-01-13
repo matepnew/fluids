@@ -14,6 +14,8 @@
         <script src="simulation.js"></script>
         <script src="vector2.js"></script>
         <script src="drawUtils.js"></script>
+        <script src="particle.js"></script>
+        <script src="fluidHashGrid.js"></script>
 
         <script>
             var canvas = document.getElementById("canvas");
@@ -28,6 +30,7 @@
             mainLoop();
 
             function updatePlayground(dt){
+                Clear();
                 playground.update(dt);
                 playground.draw();
             }
@@ -41,6 +44,11 @@
                 updatePlayground(deltaTime);
                 lastTime = currentTime;
 
+            }
+
+            function Clear(){
+                ctx.fillStyle = "#242321";
+                ctx.fillRect(0,0, canvas.width, canvas.height);
             }
 
             function getMousePos(canvas, evt){

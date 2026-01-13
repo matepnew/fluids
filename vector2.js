@@ -14,6 +14,10 @@ class Vector2{
         return Math.sqrt(this.x*this.x + this.y*this.y);
     }
 
+    Lenght2(){
+        return this.x*this.x + this.y*this.y;
+    }
+
     GetNormal(){
         return Vector2(this.y, -this.x);
     }
@@ -26,6 +30,10 @@ class Vector2{
     Log(){
         console.log("Vector2: ",this.x, +this.y);
 
+    }
+
+    Cpy(){
+        return new Vector2(this.x, this.y);
     }
 
     static Zero(){
