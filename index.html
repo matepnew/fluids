@@ -16,10 +16,6 @@
             right: 0;
             background: #242321;
             border-top: 1px solid #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
             }
             button {
             margin: 0 4px;
@@ -53,11 +49,6 @@
             border: 1px solid #333;
             border-radius: 4px;
             }
-            #button-container {
-            display: flex;
-            gap: 4px;
-            justify-content: center;
-            }
 
         </style>
     </head>
@@ -65,12 +56,10 @@
     <body>
         <h1 id="sim-title">Fluid Dynamics Simulation</h1>
         <div id="controls">
-            <div>left-click to drag objects around, middle-click to rotate source</div>
-            <div id="button-container">
-                <button id="toggleEmitter" onclick="toggleEmitterFlow()">Start Flow</button>
-                <button id="addCircle" onclick="addCircleAtMouse()">Add Obstacle</button>
-                <button id="removeCircle" onclick="removeLastCircle()">Remove Obstacle</button>
-            </div>
+            left-click to drag objects around, middle-click to rotate source
+            <button id="toggleEmitter" onclick="toggleEmitterFlow()">Start Flow</button>
+            <button id="addCircle" onclick="addCircleAtMouse()">Add Obstacle</button>
+            <button id="removeCircle" onclick="removeLastCircle()">Remove Obstacle</button>
         </div>
         <div id="credits">
         <a href="https://github.com/matepnew" style="font-size:12px; color:#419D78; margin-left: 8px; margin-bottom: 8px; ">made by matepnew</a>

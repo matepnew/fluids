@@ -43,7 +43,7 @@ class ParticleEmitter{
         this.direction.y = rotatedY;
     }
 
-    moveBy(delta){
+    move(delta){
         this.position = Add(this.position, delta);
     }
 
