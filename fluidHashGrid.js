@@ -28,7 +28,7 @@ class FluidHashGrid{
         return hash;
     }
 
-    getNeighbourOfPardicleIdx(i){
+    getNeighbourOfParticleIdx(i){
         let neighbours = [];
         let pos = this.particles[i].position;
         let particleGridX = parseInt(pos.x / this.cellSize);
@@ -57,10 +57,10 @@ class FluidHashGrid{
 
             let entries = this.hashMap.get(hash);
             if(entries == null){
-                let newArray = [this.particles[i]];
+                let newArray = [i];
                 this.hashMap.set(hash, newArray);
             } else {
-                entries.push(this.particles[i]);
+                entries.push(i);
             }
         }
     }

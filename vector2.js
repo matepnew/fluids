@@ -5,31 +5,29 @@ class Vector2{
     }
 
     Normalize(){
-        let lenght = this.Lenght();
-        this.x /= lenght;
-        this.y /= lenght;  
+        let length = this.Length();
+        this.x /= length;
+        this.y /= length;
     }
 
-    Lenght(){
-        return Math.sqrt(this.x*this.x + this.y*this.y);
+    Length(){
+        return Math.sqrt(this.x * this.x + this.y * this.y);
     }
 
-    Lenght2(){
-        return this.x*this.x + this.y*this.y;
+    Length2(){
+        return this.x * this.x + this.y * this.y;
     }
 
     GetNormal(){
-        return Vector2(this.y, -this.x);
+        return new Vector2(this.y, -this.x);
     }
-    
-    Dot(vec){
-        return this.x * vec.x + this.y * vec.y;
 
-    }   
+    Dot(vec){
+        return this.x * vec.x + this.y * vec.y
+    }
 
     Log(){
-        console.log("Vector2: ",this.x, +this.y);
-
+        console.log("Vector2: ",this.x, this.y);
     }
 
     Cpy(){

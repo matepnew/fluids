@@ -1,14 +1,80 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="utf-8" />
         <title>Fluid Simulation</title>
         <style>
-            * { padding: 0; margin: 0;  }
             canvas { display: block; margin: 20px auto}
-            body { background: #242321;}
+            body { background: #242321; color:#F4F3EE; font-family: monospace;}
+            #controls { 
+            padding: 8px; 
+            margin: 0 0 2px 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #242321;
+            border-top: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            }
+            button {
+            margin: 0 4px;
+            padding: 4px 8px;
+            font-size: 14px;
+            background-color: #F4F3EE;
+            border-radius: 4px;
+            border-style: none;
+            font-family: monospace;
+            }
+            button:hover {
+            background-color: #419D78;
+            cursor: pointer;
+            color: #F4F3EE;
+            }
+            button.active {
+            background-color: #419D78;
+            color: #F4F3EE;
+            }
+            #sim-title {
+            margin: 8px 4px 4px 8px;
+            font-weight: 600;
+            color: #F4F3EE;
+            text-align: center;
+            }
+            #credits {
+            text-align: center;
+            margin-bottom: 16px;
+            }
+            canvas {
+            border: 1px solid #333;
+            border-radius: 4px;
+            }
+            #button-container {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+            }
+
         </style>
     </head>
 
-    <body> 
+    <body>
+        <h1 id="sim-title">Fluid Dynamics Simulation</h1>
+        <div id="controls">
+            <div>left-click to drag objects around, middle-click to rotate source</div>
+            <div id="button-container">
+                <button id="toggleEmitter" onclick="toggleEmitterFlow()">Start Flow</button>
+                <button id="addCircle" onclick="addCircleAtMouse()">Add Obstacle</button>
+                <button id="removeCircle" onclick="removeLastCircle()">Remove Obstacle</button>
+            </div>
+        </div>
+        <div id="credits">
+        <a href="https://github.com/matepnew" style="font-size:12px; color:#419D78; margin-left: 8px; margin-bottom: 8px; ">made by matepnew</a>
+        </div>
         <canvas id="canvas" width="1280px" height="720px" style="border: solid 1px black;"></canvas>
         <script src="playground.js"></script>
         <script src="simulation.js"></script>
@@ -16,6 +82,11 @@
         <script src="drawUtils.js"></script>
         <script src="particle.js"></script>
         <script src="fluidHashGrid.js"></script>
+        <script src="particleEmitter.js"></script>
+        <script src="spring.js"></script>
+        <script src="shapes/shape.js"></script>
+        <script src="shapes/circle.js"></script>    
+        <script src="shapes/polygon.js"></script>
 
         <script>
             var canvas = document.getElementById("canvas");
@@ -26,6 +97,7 @@
             let deltaTime = 0;
 
             let playground = new Playground();
+            let emitterRunning = false;
 
             mainLoop();
 
@@ -57,6 +129,21 @@
                     x: evt.clientX - rect.left,
                     y: evt.clientY - rect.top
                 };
+            }
+
+            function toggleEmitterFlow(){
+                playground.simulation.toggleEmitter();
+                emitterRunning = !emitterRunning;
+                document.getElementById("toggleEmitter").textContent = emitterRunning ? "Stop Flow" : "Start Flow";
+            }
+
+            function addCircleAtMouse(){
+                let mousePos = playground.mousePos;
+                playground.simulation.addCircle(mousePos.x, mousePos.y, 50);
+            }
+
+            function removeLastCircle(){
+                playground.simulation.removeCircle();
             }
 
             canvas.addEventListener('mousemove', function(evt){
